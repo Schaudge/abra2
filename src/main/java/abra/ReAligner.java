@@ -610,7 +610,7 @@ public class ReAligner {
 				int readPos = alignment.pos;
 				
 				// Set contig alignment info for all reads that map to contigs (even if read is unchanged)
-				String ya = alignment.chromosome + ":" + alignment.contigPos + ":" + alignment.contigCigar;
+				String ya = alignment.chromosome + "," + alignment.contigPos + "," + alignment.contigCigar;
 				
 				// If no change to alignment, just record the YA tag
 				if (!read.getReadUnmappedFlag() && read.getAlignmentStart() == readPos && read.getCigarString().equals(alignment.cigar)) {
@@ -626,12 +626,12 @@ public class ReAligner {
 					String yo;
 					if (!read.getReadUnmappedFlag()) {
 						String origOrientation = read.getReadNegativeStrandFlag() ? "-" : "+";
-						yo = read.getReferenceName() + ":" + read.getAlignmentStart() + ":" + origOrientation + ":" + read.getCigarString();
+						yo = read.getReferenceName() + "," + read.getAlignmentStart() + "," + origOrientation + "," + read.getCigarString();
 					} else {
 						read.setReadUnmappedFlag(false);
 						read.setMappingQuality(this.maxMapq);
 						// Original alignment start info used in sort phase
-						yo = "N/A:" + read.getAlignmentStart();
+						yo = "N/A," + read.getAlignmentStart();
 					}
 					read.setAttribute("YO", yo);
 	

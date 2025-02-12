@@ -103,7 +103,7 @@ public class SortedSAMWriter {
 		int origAlignmentStart = read.getAlignmentStart();
 		String yo = read.getStringAttribute("YO");
 		if (yo != null) {
-			String[] fields = yo.split(":");
+			String[] fields = yo.split(",");
 			origAlignmentStart = Integer.parseInt(fields[1]);
 		}
 		
@@ -409,7 +409,7 @@ public class SortedSAMWriter {
 				// regardless of the original alignment.
 				isRc = !read.getMateNegativeStrandFlag();
 			} else {
-				String[] fields = yo.split(":");
+				String[] fields = yo.split(",");
 				pos = Integer.parseInt(fields[1]);
 				isUnmapped = false;
 				isRc = fields[2].equals("-") ? true : false;

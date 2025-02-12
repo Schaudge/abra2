@@ -566,7 +566,7 @@ public class SimpleAlleleCounter {
 		String contigInfo = read.getStringAttribute("YA");
 		if (contigInfo != null) {
 			// Get assembled contig info.
-			String[] fields = contigInfo.split(":");
+			String[] fields = contigInfo.split(",");
 			int contigPos = Integer.parseInt(fields[1]);
 			
 			Cigar contigCigar = TextCigarCodec.decode(fields[2]);
